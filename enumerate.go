@@ -1,7 +1,6 @@
 package main
 
 import (
-	"log"
 	"math"
 	"math/rand"
 	"time"
@@ -35,10 +34,6 @@ func Enumerate(length uint, alphabet string) <-chan string {
 		// random integer, that is the number of times the same integer can be
 		// used to generate an random index.
 		var poolSize = 63 / maskLength
-
-		log.Println("alphabet", alphabet, alphabetLength)
-		log.Println("mask", mask, maskLength)
-		log.Println("pool", poolSize)
 
 		// Generate strings indefinitely.
 		var b = make([]byte, length)
