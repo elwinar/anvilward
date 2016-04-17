@@ -1,6 +1,7 @@
 package main
 
 import (
+	"log"
 	"math"
 	"math/rand"
 	"time"
@@ -23,7 +24,7 @@ func Enumerate(length uint, alphabet string) <-chan string {
 		// maskLength is the number of bits necessary to represent the number
 		// of letters in the alphabet, used to compute the size of the mask to
 		// apply to the random numbers generated.
-		var maskLength = uint(math.Log2(float64(alphabetLength)))
+		var maskLength = uint(math.Log2(float64(alphabetLength))) + 1
 
 		// The mask is used to take only the necessary part of the randomly
 		// generated number in a way more efficient and statistically valid
@@ -34,6 +35,10 @@ func Enumerate(length uint, alphabet string) <-chan string {
 		// random integer, that is the number of times the same integer can be
 		// used to generate an random index.
 		var poolSize = 63 / maskLength
+
+		log.Println("alphabet", alphabet, alphabetLength)
+		log.Println("mask", mask, maskLength)
+		log.Println("pool", poolSize)
 
 		// Generate strings indefinitely.
 		var b = make([]byte, length)
